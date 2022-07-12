@@ -1,0 +1,23 @@
+{
+  "name": "react-native-my-other-apps-example",
+  "displayName": "MyOtherApps Example",
+  "expo": {
+    "name": "react-native-my-other-apps-example",
+    "slug": "react-native-my-other-apps-example",
+    "description": "Example app for react-native-my-other-apps",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "jsEngine": "hermes",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
