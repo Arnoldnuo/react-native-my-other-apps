@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ListItem, Avatar, Button } from "@rneui/themed";
 import { Linking, Platform, View } from "react-native";
 
