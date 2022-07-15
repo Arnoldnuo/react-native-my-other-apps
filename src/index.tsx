@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import { ListItem, Avatar, Button } from "@rneui/themed";
-import { useEffect, useState } from "react";
 import { Linking, Platform, View } from "react-native";
 
 export function multiply(a: number, b: number): Promise<number> {
