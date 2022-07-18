@@ -6,7 +6,9 @@ import { MyOtherApps } from 'react-native-my-other-apps';
 export default function App() {
   return (
     <View style={styles.container}>
-      <MyOtherApps api='https://fyjdev.fayanji.com/myapps/infos' />
+      <MyOtherApps api='https://fyjdev.fayanji.com/myapps/infos'
+        ignoreKeys={['fayanji1']}
+      />
     </View>
   );
 }
