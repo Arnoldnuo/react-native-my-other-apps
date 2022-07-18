@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ListItem, Avatar, Button, Text } from "@rneui/themed";
-import { Linking, Platform, TextStyle, View } from "react-native";
+import { Linking, Platform, TextStyle, View, ViewStyle } from "react-native";
+import _ from 'lodash';
 
 export function multiply(a: number, b: number): Promise<number> {
   return Promise.resolve(a * b);
@@ -17,9 +18,13 @@ interface AppInfo {
 interface MyOtherAppsProps {
   api: string,
   ignoreKeys: string[]
+  containerStyle?: ViewStyle
+  headerTitle?: string
 }
 
-export const MyOtherApps = ({ api, ignoreKeys }: MyOtherAppsProps) => {
+export const MyOtherApps = ({ api, ignoreKeys, containerStyle, headerTitle: title }: MyOtherAppsProps) => {
+  if (!_.isArray(ignoreKeys)) { ignoreKeys = []; }
+
   const [appInfos, setAppInfos] = useState<AppInfo[]>([]);
   useEffect(() => {
     (async () => {
@@ -34,8 +39,8 @@ export const MyOtherApps = ({ api, ignoreKeys }: MyOtherAppsProps) => {
     Linking.openURL(downloadUrl);
   };
 
-  return <View style={{}}>
-    <Text style={headerTitle}>作者的其他APP，欢迎试用</Text>
+  return <View style={containerStyle}>
+    <Text style={headerTitle}>{title || '作者的其他APP，欢迎试用'}</Text>
     {appInfos
       .filter(appInfo => !ignoreKeys.includes(appInfo.key))
       .map((appInfo => {

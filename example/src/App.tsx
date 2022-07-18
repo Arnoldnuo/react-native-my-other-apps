@@ -8,6 +8,7 @@ export default function App() {
     <View style={styles.container}>
       <MyOtherApps api='https://fyjdev.fayanji.com/myapps/infos'
         ignoreKeys={['fayanji1']}
+        containerStyle={{marginTop: 100}}
       />
     </View>
   );
