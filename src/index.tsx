@@ -43,6 +43,10 @@ export const MyOtherApps = ({ api, ignoreKeys, containerStyle, headerTitle: titl
     <Text style={headerTitle}>{title || '作者的其他APP，欢迎试用'}</Text>
     {appInfos
       .filter(appInfo => !ignoreKeys.includes(appInfo.key))
+      .filter(appInfo => {
+        return (appInfo.androidUrl && Platform.OS === 'android') ||
+          (appInfo.iosUrl && Platform.OS === 'ios');
+      })
       .map((appInfo => {
         return <ListItem key={appInfo.key} bottomDivider>
           <Avatar source={{ uri: appInfo.avatar }} />
