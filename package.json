@@ -1,6 +1,6 @@
 {
   "name": "react-native-my-other-apps",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -154,6 +154,7 @@
     "@expo/vector-icons": "^13.0.0",
     "@rneui/base": "^4.0.0-rc.5",
     "@rneui/themed": "^4.0.0-rc.5",
+    "expo-application": "^5.1.1",
     "expo-asset": "^8.5.0",
     "expo-constants": "^13.1.1",
     "expo-file-system": "^14.0.0",

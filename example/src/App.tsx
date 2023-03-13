@@ -1,14 +1,23 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { MyOtherApps } from 'react-native-my-other-apps';
+import { StyleSheet, View } from 'react-native';
+import { MyOtherApps, UpgradeCheck } from 'react-native-my-other-apps';
+
+const OtherAppUrl = 'https://fyjdev.fayanji.com/myapps/infos';
+const LatestInfoUrl = 'https://fyjdev.fayanji.com/myapps/info/fayanji'
+
 
 export default function App() {
+
+  React.useEffect(() => {
+    UpgradeCheck(LatestInfoUrl);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <MyOtherApps api='https://fyjdev.fayanji.com/myapps/infos'
+      <MyOtherApps api={OtherAppUrl}
         ignoreKeys={['fayanji1']}
-        containerStyle={{marginTop: 100}}
+        containerStyle={{ marginTop: 100 }}
       />
     </View>
   );
