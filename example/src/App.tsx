@@ -10,7 +10,7 @@ const LatestInfoUrl = 'https://fyjdev.fayanji.com/myapps/info/fayanji'
 export default function App() {
 
   React.useEffect(() => {
-    UpgradeCheck(LatestInfoUrl, false);
+    UpgradeCheck(LatestInfoUrl, false, ()=>{console.log('no upgrade')});
   }, []);
 
   return (

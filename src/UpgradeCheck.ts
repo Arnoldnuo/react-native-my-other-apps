@@ -26,20 +26,22 @@ const versionGreaterThan = (versionNew: string, versionCurrent: string) => {
  * 
  * @param api 获取app最新版信息的url
  * @param shouldIgnoreVersion 如果某个版本已经被忽略了，这个属性控制要不要忽略这个版本，忽略时用于app的自动更新，不忽略时，用于用户的手动检查更新 
+ * @Param noUpgradeCb 没有更新时的回调函数
  */
-export const UpgradeCheck = async (api: string, shouldIgnoreVersion = false) => {
+export const UpgradeCheck = async (api: string, shouldIgnoreVersion = false, noUpgradeCb = () => { }) => {
   const res = await fetch(api);
   const appInfoRes: AppInfo = (await res.json()).data;
-  const versionCurrent = Application.nativeApplicationVersion;
+  const versionCurrent = Application.nativeApplicationVersion || '';
   const versionNew = Platform.select({
     ios: appInfoRes.iosVersion,
     android: appInfoRes.androidVersion,
   }) || '';
   const ignoredVersion = await AsyncStorage.getItem(IgnoredVersionStorageKey);
   if (shouldIgnoreVersion && ignoredVersion === versionNew) {
+    noUpgradeCb && noUpgradeCb();
     return;
   }
-  if (versionGreaterThan(versionNew || '', versionCurrent || '')) {
+  if (versionGreaterThan(versionNew, versionCurrent)) {
     Alert.alert('发现新版本', appInfoRes.whatsNew, [
       {
         text: '忽略', onPress: async () => {
@@ -55,5 +57,7 @@ export const UpgradeCheck = async (api: string, shouldIgnoreVersion = false) => 
         }
       }
     ]);
+  } else {
+    noUpgradeCb && noUpgradeCb();
   }
 };
